@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -526,6 +527,12 @@ const upload = multer({
 
 async function startServer() {
   const app = express();
+  app.use(cors({
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
   app.use(express.json());
 
   // Connect to MongoDB Atlas
@@ -4004,16 +4011,29 @@ async function startServer() {
     }
   });
 
-  // Serve pre-built static files in production, or use Vite middleware in development
+  // Serve pre-built static files in production if dist exists, or provide health check for backend-only deployments
   if (process.env.NODE_ENV === 'production') {
     const distPath = path.resolve(__dirname, 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res, next) => {
-      if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
-        return next();
-      }
-      res.sendFile(path.resolve(distPath, 'index.html'));
-    });
+    if (fs.existsSync(distPath)) {
+      app.use(express.static(distPath));
+      app.get('*', (req, res, next) => {
+        if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+          return next();
+        }
+        res.sendFile(path.resolve(distPath, 'index.html'));
+      });
+    } else {
+      // Backend-only deployment health check
+      app.get('/', (_req, res) => {
+        res.json({
+          status: 'ok',
+          service: 'The Cake House API',
+          version: '1.0.0',
+          database: 'MongoDB Atlas Connected',
+          endpoints: '/api/v1'
+        });
+      });
+    }
   } else {
     // Vite middleware for frontend development
     const vite = await createViteServer({
