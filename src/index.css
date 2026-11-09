@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-ivory: #FAF7F2;
+  --color-burgundy: #762F3D;
+  --color-burgundy-dark: #5F2030;
+  --color-gold: #C5A46D;
+  --color-blush: #F3E6DF;
+  --color-charcoal: #302725;
+}
+
+body {
+  background-color: #FAF7F2;
+  color: #302725;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+@keyframes marquee-left-to-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-ltr {
+  display: flex;
+  width: max-content;
+  animation: marquee-left-to-right 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-ltr:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-ltr {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ========================================================
+   GLOBAL DROPDOWN ANIMATION SYSTEM
+   Provides smooth vertical fade entrance with zero horizontal shift
+   ======================================================== */
+@keyframes dropdown-fade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdown-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-animate-down {
+  animation: dropdown-fade-down 140ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+.dropdown-animate-up {
+  animation: dropdown-fade-up 140ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+/* ========================================================
+   GLOBAL DROPDOWN & SELECT UI/UX DESIGN SYSTEM
+   Standardizes all native select elements across every page
+   ======================================================== */
+select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: #FAF7F2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23762F3D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.75rem center !important;
+  background-size: 1rem 1rem !important;
+  padding-right: 2.25rem !important;
+  color: #302725;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+select:hover {
+  border-color: rgba(118, 47, 61, 0.45) !important;
+  background-color: #F8F3ED;
+}
+
+select:focus,
+select:focus-visible {
+  outline: none !important;
+  border-color: #762F3D !important;
+  box-shadow: 0 0 0 3px rgba(118, 47, 61, 0.14) !important;
+}
+
+select:disabled {
+  background-color: #EFE9E2 !important;
+  cursor: not-allowed;
+  opacity: 0.65;
+}

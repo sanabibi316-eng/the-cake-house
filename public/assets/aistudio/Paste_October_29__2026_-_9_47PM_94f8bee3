@@ -1,0 +1,2387 @@
+# THE CAKE HOUSE
+
+## Complete Product Requirements Document (PRD)
+
+### Premium Bakery Website & Management System
+
+---
+
+# 1. PROJECT OVERVIEW
+
+Build a complete, production-ready bakery e-commerce website and business management system for a fictional Pakistani bakery named **The Cake House**.
+
+The application must combine a beautiful customer-facing bakery website with a secure, role-based management system for the bakery owner and staff.
+
+The final product must look and behave like a professionally developed commercial application, following the provided UI mockup as the primary design reference.
+
+This is not just a landing page, a static UI prototype, or a basic admin dashboard. It is a complete, responsive, database-connected web application.
+
+### Business Name
+
+The Cake House
+
+### Business Type
+
+A Pakistani artisan bakery specializing in:
+
+* Custom birthday cakes.
+* Wedding and engagement cakes.
+* Anniversary cakes.
+* Cupcakes.
+* Pastries.
+* Brownies.
+* Cookies.
+* Croissants.
+* Bread.
+* Desserts and seasonal bakery products.
+
+### Target Market
+
+Customers and bakery staff in Pakistan.
+
+### Primary Currency
+
+Pakistani Rupees (PKR), displayed as `Rs.` or `PKR` consistently.
+
+### Primary Language
+
+English.
+
+### Application Type
+
+Full-stack MERN application.
+
+### Technology Stack
+
+* MongoDB Atlas: Database.
+* Express.js: Backend API framework.
+* React: Frontend interface.
+* Node.js: Backend runtime.
+* Vite: React development and build tool.
+* Mongoose: MongoDB object modeling.
+* JavaScript: Both frontend and backend.
+* CSS: Responsive styling and design system.
+* Framer Motion: Animations, where appropriate.
+* Recharts: Dashboard charts and analytics.
+
+**Important:** Use JavaScript, not TypeScript. Do not replace MongoDB with Firebase or Firestore. Do not build a static-only frontend. All business data must be managed through the backend and stored in MongoDB.
+
+---
+
+# 2. PROJECT OBJECTIVES
+
+The application must achieve the following objectives:
+
+1. Create a beautiful, premium bakery storefront that attracts customers.
+2. Allow customers to browse products and place orders online.
+3. Provide a guided workflow for requesting customized cakes.
+4. Allow customers to register, sign in, track orders, and manage their profiles.
+5. Give the owner complete control over products, orders, customers, staff, inventory, finances, and reports.
+6. Give cashiers a fast and practical point-of-sale interface.
+7. Allow bakers to manage production tasks and cake preparation.
+8. Allow inventory managers to manage ingredients, stock levels, and suppliers.
+9. Allow delivery staff to manage assigned deliveries.
+10. Provide accurate sales, expenses, inventory, and operational reports.
+11. Ensure every interface is responsive and accessible.
+12. Maintain secure authentication and role-based permissions.
+13. Deliver a consistent design across all public pages and internal dashboards.
+
+---
+
+# 3. UI/UX DESIGN SYSTEM
+
+## 3.1 Visual Direction
+
+Use the provided mockup image as the primary visual reference.
+
+The design should feel like a premium artisan bakery brand: elegant, warm, modern, editorial, professional, and inviting.
+
+The application must combine luxury bakery photography with clean layouts, refined typography, generous whitespace, and intuitive interactions.
+
+Avoid generic dashboard templates, oversized solid-color hero sections, excessive gradients, cluttered layouts, and inconsistent components.
+
+## 3.2 Exact Color Theme
+
+Use the following color palette consistently throughout the entire application.
+
+| Purpose            | Color               | Hex Code |
+| ------------------ | ------------------- | -------- |
+| Main background    | Warm ivory          | #FAF7F2  |
+| Card background    | Pure white          | #FFFFFF  |
+| Primary brand      | Deep burgundy       | #762F3D  |
+| Primary hover      | Dark burgundy       | #5F2030  |
+| Secondary accent   | Muted gold          | #C5A46D  |
+| Soft blush         | Pale blush          | #F3E6DF  |
+| Primary text       | Dark brown-charcoal | #302725  |
+| Secondary text     | Muted warm gray     | #80736F  |
+| Borders            | Warm light gray     | #E8E0D9  |
+| Success background | Soft sage green     | #E2F0E4  |
+| Success text       | Dark green          | #326B45  |
+| Warning background | Pale amber          | #FFF0D5  |
+| Error background   | Pale rose           | #FBE5E5  |
+| Error text         | Dark red            | #A33242  |
+
+These colors establish the required visual direction. Use the burgundy and gold tones consistently and do not introduce unrelated bright accent colors.
+
+### Color Distribution
+
+* 65–75% warm ivory and white surfaces.
+* 10–15% photography and image content.
+* 5–10% burgundy accents.
+* Remaining space for muted gold, blush, borders, and status colors.
+
+Do not use burgundy as the background for every section.
+
+The public storefront should primarily use ivory and white backgrounds. Burgundy should emphasize buttons, selected navigation items, important headings, and key actions.
+
+## 3.3 Typography
+
+Use:
+
+* **Playfair Display** for elegant headings.
+* **Inter** for body text, buttons, forms, tables, and dashboard elements.
+
+Typography requirements:
+
+* Clear heading hierarchy.
+* Comfortable reading sizes.
+* Consistent font weights.
+* Proper line heights.
+* Responsive font scaling.
+* No excessively large headings that overwhelm the interface.
+
+Load fonts reliably and provide fallback fonts.
+
+## 3.4 Layout and Components
+
+Use:
+
+* Consistent content widths.
+* Generous but efficient spacing.
+* Rounded corners between 10px and 16px for most cards.
+* Subtle, realistic shadows.
+* Fine, warm-toned borders.
+* High-quality photography.
+* Consistent iconography.
+* Clear primary and secondary actions.
+* Well-designed form controls.
+* Consistent status badges.
+
+Use Lucide icons or another consistent icon library.
+
+Avoid excessive glassmorphism. This project should prioritize the warm, refined bakery aesthetic shown in the reference.
+
+## 3.5 Buttons
+
+Primary buttons:
+
+* Burgundy background.
+* White text.
+* Subtle hover transition.
+* Clear disabled state.
+* Consistent height and padding.
+
+Secondary buttons:
+
+* White or transparent background.
+* Burgundy text or border.
+
+Tertiary actions:
+
+* Simple text buttons or icon buttons with accessible labels.
+
+Destructive actions must use an appropriate error color and confirmation where necessary.
+
+## 3.6 Photography
+
+Use attractive, high-quality images of real bakery products.
+
+Images should include:
+
+* Chocolate fudge cakes.
+* Red velvet cakes.
+* Vanilla cupcakes.
+* Brownies.
+* Croissants.
+* Cookies.
+* Custom wedding cakes.
+* Bakery interiors and cake decorations.
+
+Use consistent aspect ratios and proper image cropping.
+
+Use locally stored assets or reliable image sources. Do not depend on arbitrary external image URLs that may stop working.
+
+If no suitable image is available, use a graceful placeholder rather than a broken image.
+
+## 3.7 Responsive Design
+
+Support:
+
+* Mobile: 360px–767px.
+* Tablet: 768px–1023px.
+* Desktop: 1024px and above.
+* Large desktop: 1440px and above.
+
+Requirements:
+
+* No horizontal overflow.
+* Responsive navigation.
+* Mobile-friendly forms.
+* Properly sized product cards.
+* Touch-friendly buttons.
+* Responsive charts and tables.
+* Collapsible sidebars.
+* Adaptive dashboard grids.
+* Mobile-friendly checkout and POS layouts.
+
+---
+
+# 4. USER ROLES AND PERMISSIONS
+
+The application must support the following roles.
+
+## 4.1 Guest
+
+A guest can:
+
+* Browse the homepage.
+* View products and categories.
+* Search and filter products.
+* View product details.
+* Configure a custom cake request.
+* Register or sign in.
+* Access public business information.
+
+Guests must sign in before accessing protected customer features or submitting orders that require an account.
+
+## 4.2 Customer
+
+Customers can:
+
+* Manage their profiles.
+* Browse and purchase products.
+* Add products to a cart.
+* Place orders.
+* Request custom cakes.
+* Select delivery or pickup where available.
+* View order history.
+* Track order progress.
+* View payment information.
+* Save delivery addresses.
+* Cancel eligible orders according to business rules.
+* Receive notifications about order updates.
+
+Customers must never access internal management screens or other customers' private information.
+
+## 4.3 Admin / Owner
+
+The owner has complete authorized access to:
+
+* Dashboard.
+* Orders.
+* Custom cake orders.
+* Products and categories.
+* Inventory.
+* Production.
+* Customers.
+* Staff.
+* Suppliers.
+* Deliveries.
+* Expenses.
+* Reports.
+* Payments.
+* Settings.
+* Audit logs.
+
+The owner can manage user roles and permissions.
+
+## 4.4 Manager
+
+The manager can:
+
+* View operational dashboards.
+* Manage orders.
+* Manage custom cake requests.
+* Manage products.
+* Coordinate production.
+* Manage customers.
+* Review inventory.
+* Manage assigned operational tasks.
+* View authorized reports.
+
+The manager must not automatically receive permission to change owner accounts or sensitive system settings.
+
+## 4.5 Cashier
+
+The cashier can:
+
+* Access the POS.
+* Search products.
+* Add items to a cart.
+* Create walk-in orders.
+* Select existing customers or register walk-in customer details.
+* Apply authorized discounts.
+* Record supported payment methods.
+* Print or download receipts.
+* View permitted order information.
+* Process eligible refunds only if authorized.
+
+The cashier must not access staff administration, unrestricted financial reports, or system configuration.
+
+## 4.6 Baker
+
+The baker can:
+
+* View assigned production tasks.
+* View cake specifications.
+* Review custom cake reference images.
+* See preparation deadlines.
+* Update production status.
+* Add production notes.
+* Mark tasks as completed.
+* View relevant ingredient availability.
+
+The baker cannot access unrelated customer data, staff permissions, or financial reports.
+
+## 4.7 Inventory Manager
+
+The inventory manager can:
+
+* Manage ingredients.
+* Manage stock quantities.
+* Record purchases.
+* Manage suppliers.
+* Record stock adjustments.
+* Monitor low-stock alerts.
+* Track ingredient usage.
+* View inventory reports.
+
+The inventory manager cannot change owner permissions or access unrestricted financial data.
+
+## 4.8 Delivery Staff
+
+Delivery staff can:
+
+* View assigned deliveries.
+* View necessary customer contact and delivery details.
+* View delivery instructions.
+* Update delivery status.
+* Record delivery attempts.
+* Confirm successful delivery.
+
+Delivery staff must not access unrelated customers, staff accounts, or internal financial reports.
+
+## 4.9 Permission Enforcement
+
+Implement role-based access control on both frontend and backend.
+
+Hiding a button is not sufficient security.
+
+Every protected API must verify the authenticated user's permissions.
+
+Use reusable authorization middleware and a centralized permission strategy.
+
+---
+
+# 5. PUBLIC WEBSITE
+
+## 5.1 Home Page
+
+Create the premium storefront shown in the reference mockup.
+
+### Navigation
+
+Include:
+
+* The Cake House logo.
+* Home.
+* Products.
+* Custom Cakes.
+* About Us.
+* Contact.
+* Search.
+* Shopping cart.
+* Account or Login.
+
+On mobile, use a clean responsive navigation menu.
+
+### Hero Section
+
+Create an elegant two-column layout.
+
+Left side:
+
+* Heading: "Life is Sweeter with Cake"
+* Short supporting description.
+* Primary button: "Order Now"
+* Secondary button: "Explore Products"
+
+Right side:
+
+* Large, high-quality featured cake photograph.
+
+Use a warm ivory background with subtle decorative details. Avoid a full-screen burgundy background.
+
+### Trust Indicators
+
+Display concise indicators such as:
+
+* Fresh Ingredients.
+* Custom Cakes.
+* Fast Delivery.
+* Secure Payments.
+
+Only display claims that the business actually supports.
+
+### Featured Products
+
+Show a responsive grid of popular products.
+
+Each product card must include:
+
+* Product image.
+* Product name.
+* Price in PKR.
+* Availability.
+* Product details link.
+* Add-to-cart action where applicable.
+
+### Custom Cake Promotion
+
+Include an elegant promotional section encouraging customers to request personalized cakes.
+
+Button: "Request Custom Cake"
+
+### Bestsellers
+
+Show popular bakery products and relevant product details.
+
+### Why Choose The Cake House?
+
+Display the business's real service advantages, such as:
+
+* Quality Ingredients.
+* Artisan Craftsmanship.
+* Personalized Cakes.
+* Reliable Service.
+
+### Customer Reviews
+
+Display approved customer reviews from the database.
+
+Do not invent reviews and present them as genuine customer testimonials.
+
+### Footer
+
+Include:
+
+* Logo and short description.
+* Quick navigation.
+* Contact details.
+* Opening hours.
+* Social links.
+* Newsletter signup, if implemented.
+* Privacy Policy.
+* Terms and Conditions.
+
+All business details must be configurable through the admin settings.
+
+---
+
+# 6. PRODUCT CATALOG
+
+## 6.1 Products Page
+
+Provide a complete product listing experience.
+
+### Features
+
+* Search products.
+* Filter by category.
+* Filter by price range.
+* Filter by availability.
+* Sort by popularity.
+* Sort by price.
+* Sort alphabetically.
+* Pagination.
+* Responsive product grid.
+
+### Categories
+
+Support categories such as:
+
+* Cakes.
+* Custom Cakes.
+* Cupcakes.
+* Pastries.
+* Brownies.
+* Cookies.
+* Bread.
+* Desserts.
+
+Categories must be manageable from the admin panel.
+
+### Product Card
+
+Each card must show:
+
+* Image.
+* Product name.
+* Price.
+* Optional previous price.
+* Availability status.
+* Favorite action, if implemented.
+* View details.
+* Add to cart.
+
+Products must be loaded from MongoDB through the backend.
+
+Do not hardcode the complete product catalog into React components.
+
+## 6.2 Product Details Page
+
+Display:
+
+* Product image gallery.
+* Product name.
+* Description.
+* Price.
+* Available sizes or variants.
+* Quantity selector.
+* Availability.
+* Ingredients or allergen information when provided.
+* Customer reviews.
+* Related products.
+* Add-to-cart button.
+* Buy-now button, if supported.
+
+For configurable products, calculate the final price according to the selected variant.
+
+Prevent purchases that exceed available stock or violate product availability rules.
+
+---
+
+# 7. CUSTOM CAKE REQUEST SYSTEM
+
+This is one of the most important features of The Cake House.
+
+## 7.1 Custom Cake Form
+
+Create a guided, multi-step form.
+
+### Step 1: Occasion
+
+Options:
+
+* Birthday.
+* Wedding.
+* Engagement.
+* Anniversary.
+* Graduation.
+* Baby Shower.
+* Corporate Event.
+* Other.
+
+### Step 2: Cake Specifications
+
+Fields:
+
+* Cake type.
+* Flavor.
+* Size or weight.
+* Number of tiers, where applicable.
+* Filling.
+* Frosting.
+* Preferred colors.
+* Design description.
+* Personalized cake message.
+
+### Step 3: Reference Image
+
+Allow customers to upload reference images.
+
+Requirements:
+
+* Validate file type.
+* Validate file size.
+* Store files using a secure upload strategy.
+* Store the file URL and metadata in MongoDB.
+* Restrict unauthorized access to private files.
+* Display upload progress and errors.
+
+### Step 4: Schedule and Contact
+
+Fields:
+
+* Required date.
+* Preferred pickup time.
+* Pickup or delivery.
+* Delivery address when required.
+* Contact information.
+* Additional instructions.
+
+Validate the requested date against business availability and lead-time rules.
+
+### Step 5: Review and Submit
+
+Display a summary of all selections.
+
+Show an estimated price only when a pricing rule or approved estimate exists.
+
+Make it clear that a custom cake request may require staff approval before the order is confirmed.
+
+### Custom Cake Request Statuses
+
+Use a defined workflow:
+
+1. Pending Review.
+2. Awaiting Customer Information.
+3. Quotation Sent.
+4. Awaiting Customer Approval.
+5. Confirmed.
+6. In Production.
+7. Ready for Pickup or Dispatch.
+8. Completed.
+9. Rejected.
+10. Cancelled.
+
+Not every request must pass through every status.
+
+Record status changes with timestamps and the responsible staff member.
+
+## 7.2 Custom Cake Management
+
+The admin and authorized staff can:
+
+* Review requests.
+* View reference images.
+* Update specifications when authorized.
+* Add internal notes.
+* Prepare quotations.
+* Record approved prices.
+* Record deposits and remaining balances.
+* Confirm requests.
+* Assign bakers.
+* Schedule production.
+* Track pickup deadlines.
+* Update completion status.
+
+Customers should receive updates when important request statuses change.
+
+---
+
+# 8. SHOPPING CART AND CHECKOUT
+
+## 8.1 Shopping Cart
+
+Include:
+
+* Product image.
+* Product name.
+* Selected variant.
+* Unit price.
+* Quantity.
+* Item subtotal.
+* Remove action.
+* Order subtotal.
+* Applicable discounts.
+* Delivery fee, where applicable.
+* Final total.
+
+Recalculate totals on the backend.
+
+Never trust client-submitted prices or totals.
+
+## 8.2 Checkout
+
+Include:
+
+* Customer information.
+* Delivery or pickup selection.
+* Address selection.
+* Delivery instructions.
+* Order summary.
+* Payment method.
+* Applicable delivery charges.
+* Discount or coupon field, if supported.
+* Final payable amount.
+
+Validate inventory and prices before creating the order.
+
+Prevent duplicate order creation caused by repeated submissions.
+
+## 8.3 Payment Methods
+
+Support the payment methods actually enabled by the business, potentially including:
+
+* Cash on Delivery.
+* Cash at Pickup.
+* Bank Transfer.
+* Other configured methods.
+
+Online payment gateways should be implemented only when the business has the necessary merchant account and integration credentials.
+
+Do not simulate successful online payments in production.
+
+### Payment Statuses
+
+* Pending.
+* Awaiting Verification.
+* Partially Paid.
+* Paid.
+* Failed.
+* Refunded.
+* Partially Refunded.
+
+Record payment amount, method, transaction reference where applicable, date, and verification status.
+
+---
+
+# 9. ORDER MANAGEMENT
+
+## 9.1 Order Creation
+
+Orders can originate from:
+
+* Online customer checkout.
+* Cashier POS.
+* Authorized staff entry.
+* Confirmed custom cake requests.
+
+Generate unique order numbers.
+
+Each order should contain:
+
+* Order number.
+* Customer.
+* Order items.
+* Product variants.
+* Quantities.
+* Item prices.
+* Discounts.
+* Taxes, if applicable.
+* Delivery charges.
+* Total.
+* Amount paid.
+* Outstanding balance.
+* Payment history.
+* Order status.
+* Fulfillment method.
+* Pickup or delivery details.
+* Created and updated timestamps.
+
+Preserve historical prices in the order even if a product's current price changes later.
+
+## 9.2 Order Statuses
+
+Use a consistent workflow:
+
+* Pending.
+* Confirmed.
+* Preparing.
+* Ready.
+* Out for Delivery.
+* Completed.
+* Cancelled.
+
+Use only appropriate transitions for each fulfillment method.
+
+For example, a pickup order should not automatically transition to Out for Delivery.
+
+## 9.3 Admin Orders Screen
+
+Provide:
+
+* Search by order number or customer.
+* Date filters.
+* Status filters.
+* Payment filters.
+* Fulfillment filters.
+* Order detail view.
+* Customer information.
+* Payment information.
+* Status updates.
+* Cancellation with appropriate validation.
+* Printable receipt or order summary.
+
+The order list must remain usable on mobile.
+
+---
+
+# 10. CUSTOMER PORTAL
+
+## 10.1 Customer Dashboard
+
+Design a personalized customer dashboard matching the reference mockup.
+
+Include:
+
+* Welcome message.
+* Customer profile summary.
+* Active orders.
+* Custom cake requests.
+* Outstanding balances.
+* Recent orders.
+* Upcoming pickups.
+* Order tracking actions.
+
+## 10.2 My Orders
+
+Customers can:
+
+* View previous orders.
+* Open order details.
+* Track status.
+* Review payment information.
+* Download or print receipts when supported.
+* Request cancellation where permitted.
+
+## 10.3 Custom Cakes
+
+Customers can:
+
+* Submit requests.
+* View quotations.
+* Approve or reject quotations.
+* View production status.
+* Review pickup or delivery information.
+* Track deposits and remaining balances.
+
+## 10.4 Profile
+
+Include:
+
+* Name.
+* Email.
+* Phone number.
+* Saved addresses.
+* Password change.
+* Account preferences.
+
+Customers can access only their own records.
+
+---
+
+# 11. ADMIN DASHBOARD
+
+## 11.1 Layout
+
+Use:
+
+* Compact left sidebar.
+* Top navigation bar.
+* Search.
+* Notification center.
+* User profile menu.
+* Main content area.
+* Responsive sidebar behavior.
+
+Match the visual style of the mockup.
+
+## 11.2 Dashboard Metrics
+
+Display relevant metrics:
+
+* Today's sales.
+* Today's orders.
+* Monthly sales.
+* Pending orders.
+* Pending custom cake requests.
+* Outstanding customer balances.
+* Low-stock ingredients.
+* Upcoming pickups.
+* Upcoming deliveries.
+
+Every metric must be calculated from database records.
+
+## 11.3 Charts
+
+Include:
+
+* Sales trends.
+* Sales by category.
+* Order status distribution.
+* Bestselling products.
+* Monthly revenue comparison.
+
+Provide date filters where appropriate.
+
+Use clear labels, responsive sizing, and accessible tooltips.
+
+## 11.4 Operational Panels
+
+Include:
+
+* Recent orders.
+* Upcoming custom cake deadlines.
+* Low-stock alerts.
+* Recent inventory movements.
+* Production overview.
+* Upcoming pickups and deliveries.
+
+Each panel should provide a link to its corresponding management screen.
+
+## 11.5 Date and Currency Accuracy
+
+Use the Pakistan time zone, `Asia/Karachi`, for business dates and scheduled pickups.
+
+Store timestamps consistently and display them in the business's local time zone.
+
+Use PKR for monetary values.
+
+Revenue, expenses, outstanding balances, and profit must be calculated using clearly defined rules.
+
+Do not treat an order's total value as received revenue when it has not been paid.
+
+---
+
+# 12. CASHIER POINT OF SALE (POS)
+
+Build a fast, practical interface optimized for counter sales.
+
+## 12.1 POS Layout
+
+Use a two-panel layout on desktop.
+
+Left panel:
+
+* Product search.
+* Category tabs.
+* Product grid.
+* Product images.
+* Prices.
+* Quick-add actions.
+
+Right panel:
+
+* Current order.
+* Selected products.
+* Quantity controls.
+* Remove item actions.
+* Discount controls.
+* Customer selection.
+* Payment summary.
+* Payment method.
+* Complete Order button.
+
+On mobile, stack the panels and keep the current order easily accessible.
+
+## 12.2 POS Features
+
+* Search products.
+* Browse categories.
+* Add and remove items.
+* Change quantities.
+* Select product variants.
+* Associate an existing customer.
+* Record walk-in customer details.
+* Apply authorized discounts.
+* Calculate totals.
+* Record supported payments.
+* Create the order.
+* Generate a receipt.
+* Start a new sale.
+
+Validate prices and stock on the backend.
+
+Prevent a sale from being created twice when a cashier double-clicks the completion button.
+
+Record the cashier responsible for each transaction.
+
+---
+
+# 13. BAKER PRODUCTION PANEL
+
+Create a focused interface for bakery production.
+
+## 13.1 Production Dashboard
+
+Display:
+
+* Today's production tasks.
+* Pending tasks.
+* In-progress tasks.
+* Completed tasks.
+* Overdue tasks.
+* Upcoming custom cake deadlines.
+
+## 13.2 Production Task Details
+
+Each task should contain:
+
+* Order number.
+* Product or cake name.
+* Quantity.
+* Cake specifications.
+* Design reference.
+* Required completion time.
+* Assigned baker.
+* Relevant notes.
+* Current status.
+
+## 13.3 Production Workflow
+
+Statuses:
+
+* Queued.
+* In Preparation.
+* Baking.
+* Decorating.
+* Quality Check.
+* Completed.
+
+Use only the stages relevant to the product.
+
+Allow authorized bakers to update task progress.
+
+The admin or manager can assign and reassign production tasks.
+
+## 13.4 Production Schedule
+
+Provide:
+
+* Daily schedule.
+* Upcoming deadlines.
+* Priority indicators.
+* Filter by status.
+* Filter by assigned baker.
+* Filter by pickup date.
+
+Do not show tasks that the logged-in baker is not authorized to access.
+
+---
+
+# 14. INVENTORY MANAGEMENT
+
+## 14.1 Inventory Overview
+
+Display:
+
+* Total ingredients.
+* Low-stock items.
+* Out-of-stock items.
+* Total inventory value, when valuation data is available.
+* Recent stock movements.
+* Recent purchases.
+
+## 14.2 Ingredient Management
+
+Support ingredients such as:
+
+* Flour.
+* Sugar.
+* Butter.
+* Eggs.
+* Chocolate.
+* Cream.
+* Milk.
+* Baking powder.
+* Food coloring.
+* Cake decorations.
+* Packaging materials.
+
+Each inventory item should contain:
+
+* Name.
+* Category.
+* Unit of measurement.
+* Current stock.
+* Minimum stock level.
+* Optional maximum stock level.
+* Purchase cost.
+* Preferred supplier.
+* Expiry information, where applicable.
+* Active or inactive status.
+
+Use consistent measurement units and prevent invalid stock quantities.
+
+## 14.3 Stock Operations
+
+Support:
+
+* Receiving stock.
+* Recording purchases.
+* Stock adjustments.
+* Waste and spoilage.
+* Ingredient consumption.
+* Stock transfers if required.
+* Inventory history.
+
+Every stock movement must record:
+
+* Item.
+* Quantity.
+* Movement type.
+* Reason.
+* Date.
+* Responsible user.
+* Related order or purchase when applicable.
+
+Do not allow stock to become negative without an explicitly authorized exception.
+
+## 14.4 Low-Stock Alerts
+
+Automatically identify inventory items below their configured minimum stock levels.
+
+Display alerts on the inventory screen and admin dashboard.
+
+## 14.5 Recipe-Based Consumption
+
+If ingredient recipes are configured, allow the application to calculate expected ingredient usage from completed or approved production.
+
+Do not deduct ingredient stock from every order automatically unless the configured workflow supports it.
+
+Prevent duplicate ingredient deductions when a production task is completed more than once.
+
+---
+
+# 15. SUPPLIER MANAGEMENT
+
+Allow authorized staff to manage suppliers.
+
+Supplier records should include:
+
+* Supplier name.
+* Contact person.
+* Phone.
+* Email.
+* Address.
+* Supplied ingredients.
+* Payment terms.
+* Notes.
+* Active status.
+
+Provide:
+
+* Supplier listing.
+* Search.
+* Supplier details.
+* Purchase history.
+* Create and edit supplier actions.
+
+Restrict access according to role permissions.
+
+---
+
+# 16. DELIVERY MANAGEMENT
+
+## 16.1 Delivery Dashboard
+
+Display:
+
+* Today's deliveries.
+* Pending assignments.
+* Assigned deliveries.
+* Out-for-delivery orders.
+* Completed deliveries.
+* Failed delivery attempts.
+
+## 16.2 Delivery Records
+
+Include:
+
+* Order number.
+* Customer.
+* Delivery address.
+* Contact information.
+* Delivery instructions.
+* Scheduled delivery time.
+* Assigned delivery staff member.
+* Delivery fee.
+* Current status.
+
+## 16.3 Delivery Workflow
+
+Statuses:
+
+* Pending Assignment.
+* Assigned.
+* Out for Delivery.
+* Delivered.
+* Failed Attempt.
+* Cancelled.
+
+Delivery staff can update only deliveries assigned to them unless additional permission is granted.
+
+Record delivery completion time and relevant notes.
+
+Do not expose unnecessary customer information.
+
+---
+
+# 17. CUSTOMER MANAGEMENT
+
+Provide an authorized customer management screen.
+
+Display:
+
+* Customer name.
+* Phone.
+* Email.
+* Registration date.
+* Order count.
+* Total historical purchases.
+* Recent order.
+* Customer status.
+
+Features:
+
+* Search customers.
+* View customer profile.
+* View order history.
+* View custom cake history.
+* Update permitted contact details.
+* Add internal notes.
+* Manage account status where authorized.
+
+Do not expose passwords or sensitive authentication information.
+
+Do not calculate lifetime value by blindly summing cancelled or fully refunded orders.
+
+---
+
+# 18. EXPENSE MANAGEMENT
+
+Allow the owner and authorized managers to record business expenses.
+
+Example categories:
+
+* Ingredients.
+* Packaging.
+* Rent.
+* Utilities.
+* Staff wages.
+* Delivery.
+* Equipment.
+* Maintenance.
+* Marketing.
+* Other expenses.
+
+Each expense should contain:
+
+* Title.
+* Category.
+* Amount.
+* Date.
+* Payment method.
+* Description.
+* Optional receipt attachment.
+* Created by.
+* Created and updated timestamps.
+
+Features:
+
+* Add expense.
+* Edit authorized records.
+* View expense details.
+* Filter by category.
+* Filter by date.
+* Search.
+* Export permitted records.
+
+Record changes to important financial data.
+
+---
+
+# 19. REPORTS AND ANALYTICS
+
+Create a dedicated reports section.
+
+## 19.1 Sales Reports
+
+Include:
+
+* Daily sales.
+* Weekly sales.
+* Monthly sales.
+* Sales by category.
+* Sales by product.
+* Sales by order channel.
+* Order count.
+* Average order value.
+
+## 19.2 Financial Reports
+
+Include:
+
+* Recorded sales.
+* Collected payments.
+* Outstanding balances.
+* Refunds.
+* Recorded expenses.
+* Estimated gross profit, when ingredient cost data is available.
+* Estimated operating profit, when sufficient expense data is available.
+
+Clearly distinguish revenue from cash collected.
+
+Do not label revenue minus recorded expenses as true profit if ingredient costs, refunds, taxes, or other relevant costs are missing.
+
+## 19.3 Inventory Reports
+
+Include:
+
+* Current stock.
+* Low-stock items.
+* Stock movement history.
+* Purchase history.
+* Ingredient usage.
+* Waste and spoilage.
+
+## 19.4 Product Performance
+
+Include:
+
+* Bestselling products.
+* Slow-moving products.
+* Sales by product.
+* Revenue by category.
+* Custom cake performance.
+
+## 19.5 Reporting Controls
+
+Provide:
+
+* Date range selection.
+* Relevant filters.
+* Clear chart labels.
+* Printable reports.
+* CSV export where appropriate.
+
+Restrict reports to authorized roles.
+
+---
+
+# 20. AUTHENTICATION AND SECURITY
+
+Implement secure authentication.
+
+## 20.1 Authentication Features
+
+* Customer registration.
+* Login.
+* Logout.
+* Password hashing.
+* Protected routes.
+* Role-based authorization.
+* Password change.
+* Password reset through a secure workflow, if email infrastructure is configured.
+
+## 20.2 Security Requirements
+
+* Hash passwords using bcrypt or a suitable secure password-hashing library.
+* Validate and sanitize incoming data.
+* Use secure authentication cookies where appropriate.
+* Configure cookie security and SameSite behavior correctly.
+* Implement CSRF protection where required by the authentication strategy.
+* Apply rate limiting to login and sensitive endpoints.
+* Use Helmet and appropriate security headers.
+* Configure CORS for approved origins.
+* Keep secrets in environment variables.
+* Never expose database credentials to the frontend.
+* Never store plaintext passwords.
+* Never trust frontend role information.
+* Verify authorization on the server.
+* Restrict file uploads by type and size.
+* Prevent unauthorized access to uploaded files.
+* Handle authentication expiration gracefully.
+* Avoid exposing sensitive stack traces in production.
+
+Use a secure, maintainable authentication strategy appropriate for a MERN application.
+
+---
+
+# 21. NOTIFICATIONS
+
+Implement an in-app notification system.
+
+Notifications can cover:
+
+* New orders.
+* Custom cake requests.
+* Quotation updates.
+* Payment verification.
+* Upcoming pickup deadlines.
+* Low inventory.
+* Production delays.
+* Delivery status changes.
+
+Each notification should include:
+
+* Title.
+* Message.
+* Type.
+* Related record, where applicable.
+* Creation timestamp.
+* Read status.
+* Intended recipient or role.
+
+Users must see only notifications they are authorized to access.
+
+Email notifications may be added when an email service is configured.
+
+Do not claim that an email or external notification was sent if the relevant integration is not configured.
+
+---
+
+# 22. SETTINGS PANEL
+
+Build an admin settings interface with clearly organized tabs.
+
+## 22.1 Business Settings
+
+Manage:
+
+* Bakery name.
+* Logo.
+* Phone.
+* Email.
+* Address.
+* Business description.
+* Opening hours.
+* Pickup settings.
+* Delivery settings.
+
+## 22.2 Localization
+
+Manage:
+
+* Currency.
+* Business time zone.
+* Date format.
+* Number formatting.
+
+Default time zone: `Asia/Karachi`.
+
+Default currency: PKR.
+
+## 22.3 Order Settings
+
+Manage:
+
+* Order cancellation rules.
+* Custom cake lead time.
+* Pickup scheduling.
+* Delivery availability.
+* Minimum order amount, if applicable.
+* Supported payment methods.
+
+## 22.4 User Management
+
+Manage:
+
+* Staff accounts.
+* Roles.
+* Account status.
+* Permissions.
+
+Only the owner or an explicitly authorized administrator may manage sensitive permissions.
+
+## 22.5 System Settings
+
+Include:
+
+* Notification preferences.
+* Security-related settings.
+* Audit logs.
+* Application configuration.
+
+Never expose secrets, tokens, or database connection strings in this screen.
+
+---
+
+# 23. DATABASE DESIGN
+
+Use MongoDB Atlas with Mongoose.
+
+Design a maintainable schema structure with validation, indexes, timestamps, and appropriate references.
+
+Recommended collections:
+
+### User
+
+Fields:
+
+* name.
+* email.
+* phone.
+* passwordHash.
+* role.
+* status.
+* addresses.
+* profile information.
+* createdAt.
+* updatedAt.
+
+### Category
+
+Fields:
+
+* name.
+* slug.
+* description.
+* image.
+* status.
+
+### Product
+
+Fields:
+
+* name.
+* slug.
+* description.
+* category.
+* images.
+* variants.
+* price.
+* cost information, where available.
+* stock tracking configuration.
+* availability.
+* featured status.
+* allergens, where provided.
+* timestamps.
+
+### Cart
+
+Fields:
+
+* user.
+* items.
+* product references.
+* selected variants.
+* quantities.
+* timestamps.
+
+### Order
+
+Fields:
+
+* orderNumber.
+* customer.
+* source.
+* items.
+* pricing breakdown.
+* fulfillment method.
+* delivery or pickup information.
+* payment summary.
+* status.
+* assigned staff.
+* timestamps.
+
+### CustomCakeRequest
+
+Fields:
+
+* requestNumber.
+* customer.
+* occasion.
+* cake specifications.
+* reference images.
+* requested date.
+* pickup or delivery details.
+* quotation.
+* approval status.
+* payment summary.
+* production information.
+* status history.
+* timestamps.
+
+### Payment
+
+Fields:
+
+* order.
+* customer.
+* amount.
+* method.
+* status.
+* transaction reference.
+* verification details.
+* refund information.
+* timestamps.
+
+### InventoryItem
+
+Fields:
+
+* name.
+* category.
+* unit.
+* currentStock.
+* minimumStock.
+* purchaseCost.
+* supplier.
+* expiry information.
+* status.
+* timestamps.
+
+### InventoryMovement
+
+Fields:
+
+* inventoryItem.
+* movementType.
+* quantity.
+* unit.
+* reason.
+* relatedOrder or purchase.
+* createdBy.
+* timestamps.
+
+### Recipe
+
+Fields:
+
+* product.
+* ingredients.
+* required quantities.
+* unit.
+* version or update history where useful.
+
+### ProductionTask
+
+Fields:
+
+* order.
+* customCakeRequest.
+* product details.
+* assignedBaker.
+* deadline.
+* production stages.
+* status.
+* notes.
+* timestamps.
+
+### Supplier
+
+Fields:
+
+* name.
+* contact information.
+* supplied items.
+* payment terms.
+* status.
+
+### Purchase
+
+Fields:
+
+* supplier.
+* items.
+* quantities.
+* unit costs.
+* total.
+* payment information.
+* received status.
+* timestamps.
+
+### Delivery
+
+Fields:
+
+* order.
+* customer.
+* delivery address.
+* assignedStaff.
+* scheduledAt.
+* status.
+* delivery notes.
+* completion details.
+* timestamps.
+
+### Expense
+
+Fields:
+
+* title.
+* category.
+* amount.
+* date.
+* payment method.
+* description.
+* attachment.
+* createdBy.
+* timestamps.
+
+### Review
+
+Fields:
+
+* customer.
+* product or order reference.
+* rating.
+* comment.
+* moderation status.
+* timestamps.
+
+### Notification
+
+Fields:
+
+* recipient.
+* type.
+* title.
+* message.
+* related entity.
+* read status.
+* timestamps.
+
+### Setting
+
+Fields:
+
+* business details.
+* branding.
+* localization.
+* opening hours.
+* order configuration.
+* delivery configuration.
+
+### AuditLog
+
+Fields:
+
+* actor.
+* action.
+* entity type.
+* entity ID.
+* relevant change summary.
+* timestamp.
+
+Add other collections only when necessary for a real requirement.
+
+Use references and embedded documents appropriately. Avoid unnecessary schema duplication.
+
+Use database indexes for commonly searched fields, including order numbers, product slugs, email addresses, statuses, and dates.
+
+Do not store calculated totals as unverified client input.
+
+---
+
+# 24. BACKEND API REQUIREMENTS
+
+Build a REST API using Express.js.
+
+Use a consistent prefix:
+
+`/api/v1`
+
+Recommended endpoints:
+
+### Authentication
+
+* POST `/api/v1/auth/register`
+* POST `/api/v1/auth/login`
+* POST `/api/v1/auth/logout`
+* GET `/api/v1/auth/me`
+* PATCH `/api/v1/auth/profile`
+* POST `/api/v1/auth/change-password`
+
+Add password-reset endpoints if the corresponding secure workflow is implemented.
+
+### Products
+
+* GET `/api/v1/products`
+* GET `/api/v1/products/:id`
+* GET `/api/v1/products/slug/:slug`
+* POST `/api/v1/products`
+* PATCH `/api/v1/products/:id`
+* DELETE `/api/v1/products/:id`
+
+### Categories
+
+* GET `/api/v1/categories`
+* POST `/api/v1/categories`
+* PATCH `/api/v1/categories/:id`
+* DELETE `/api/v1/categories/:id`
+
+### Cart
+
+* GET `/api/v1/cart`
+* POST `/api/v1/cart/items`
+* PATCH `/api/v1/cart/items/:itemId`
+* DELETE `/api/v1/cart/items/:itemId`
+* DELETE `/api/v1/cart`
+
+### Orders
+
+* POST `/api/v1/orders`
+* GET `/api/v1/orders/my-orders`
+* GET `/api/v1/orders/:id`
+* GET `/api/v1/orders`
+* PATCH `/api/v1/orders/:id/status`
+* POST `/api/v1/orders/:id/cancel`
+
+### Custom Cakes
+
+* POST `/api/v1/custom-cakes`
+* GET `/api/v1/custom-cakes/my-requests`
+* GET `/api/v1/custom-cakes/:id`
+* GET `/api/v1/custom-cakes`
+* PATCH `/api/v1/custom-cakes/:id`
+* PATCH `/api/v1/custom-cakes/:id/status`
+* POST `/api/v1/custom-cakes/:id/quotation`
+
+### Payments
+
+* POST `/api/v1/payments`
+* GET `/api/v1/payments`
+* GET `/api/v1/payments/:id`
+* PATCH `/api/v1/payments/:id/verify`
+
+### Inventory
+
+* GET `/api/v1/inventory`
+* POST `/api/v1/inventory`
+* PATCH `/api/v1/inventory/:id`
+* POST `/api/v1/inventory/:id/movements`
+* GET `/api/v1/inventory/movements`
+
+### Production
+
+* GET `/api/v1/production/tasks`
+* POST `/api/v1/production/tasks`
+* PATCH `/api/v1/production/tasks/:id`
+* PATCH `/api/v1/production/tasks/:id/status`
+
+### Suppliers and Purchases
+
+* GET `/api/v1/suppliers`
+* POST `/api/v1/suppliers`
+* PATCH `/api/v1/suppliers/:id`
+* GET `/api/v1/purchases`
+* POST `/api/v1/purchases`
+* PATCH `/api/v1/purchases/:id`
+
+### Customers
+
+* GET `/api/v1/customers`
+* GET `/api/v1/customers/:id`
+* PATCH `/api/v1/customers/:id`
+
+### Deliveries
+
+* GET `/api/v1/deliveries`
+* POST `/api/v1/deliveries`
+* PATCH `/api/v1/deliveries/:id`
+* PATCH `/api/v1/deliveries/:id/status`
+
+### Expenses
+
+* GET `/api/v1/expenses`
+* POST `/api/v1/expenses`
+* PATCH `/api/v1/expenses/:id`
+* DELETE `/api/v1/expenses/:id`
+
+### Reports
+
+* GET `/api/v1/reports/dashboard`
+* GET `/api/v1/reports/sales`
+* GET `/api/v1/reports/expenses`
+* GET `/api/v1/reports/inventory`
+* GET `/api/v1/reports/products`
+
+### Notifications
+
+* GET `/api/v1/notifications`
+* PATCH `/api/v1/notifications/:id/read`
+
+### Settings
+
+* GET `/api/v1/settings`
+* PATCH `/api/v1/settings`
+
+These endpoints are the intended API contract. Implement them with the correct validation, authentication, permissions, and response formats.
+
+Do not create routes that return hardcoded success messages without performing the intended operation.
+
+---
+
+# 25. FRONTEND ARCHITECTURE
+
+Use React with Vite and JavaScript.
+
+Organize the frontend into a clean, reusable structure.
+
+Suggested organization:
+
+frontend/
+
+* src/
+
+  * api/
+  * assets/
+  * components/
+  * context/
+  * hooks/
+  * layouts/
+  * pages/
+  * routes/
+  * styles/
+  * utils/
+  * App.jsx
+  * main.jsx
+
+Use reusable components for:
+
+* Navigation.
+* Footer.
+* Product cards.
+* Product galleries.
+* Buttons.
+* Inputs.
+* Selects.
+* Modals.
+* Drawers.
+* Tables.
+* Pagination.
+* Status badges.
+* Notifications.
+* Loading skeletons.
+* Empty states.
+* Error states.
+* Dashboard cards.
+* Charts.
+* Responsive sidebars.
+
+Create separate layouts for the public storefront, customer portal, and staff management interfaces.
+
+Use React Router for navigation.
+
+Use a centralized API client for backend requests.
+
+Use a suitable shared state strategy for authentication, cart operations, and notifications.
+
+Avoid placing the entire application in one large component.
+
+Keep the folder structure simple and do not create unnecessary files.
+
+---
+
+# 26. ANIMATIONS AND INTERACTIONS
+
+Use Framer Motion where appropriate, with CSS transitions for simpler effects.
+
+Implement:
+
+* Subtle page entrance transitions.
+* Staggered product-card reveals.
+* Gentle image zoom on hover.
+* Button hover effects.
+* Animated dropdowns.
+* Smooth mobile navigation.
+* Cart drawer transitions.
+* Modal animations.
+* Toast notifications.
+* Loading skeletons.
+* Scroll-triggered reveals for selected public sections.
+
+Animations should feel refined and premium.
+
+Avoid excessive bouncing, long delays, or movement that interferes with work.
+
+Respect reduced-motion preferences.
+
+Use accessible focus states and keyboard navigation.
+
+Do not allow animations to delay important actions or prevent form submission.
+
+---
+
+# 27. DATA HANDLING AND BUSINESS RULES
+
+The application must use real database records rather than static UI-only data.
+
+Important rules:
+
+1. Every order must have a unique order number.
+2. Prices must be validated by the backend.
+3. Product stock must be checked before order confirmation.
+4. Stock updates must prevent inconsistent inventory quantities.
+5. Payment records must be associated with the appropriate order.
+6. Outstanding balances must be calculated from verified payments, refunds, and applicable adjustments.
+7. Custom cake requests must not become confirmed orders without the required approval.
+8. Production tasks must be associated with valid orders or approved production requests.
+9. Inventory movements must be recorded for stock changes.
+10. Cancelled and refunded orders must be handled correctly in financial reports.
+11. Delivery assignments must respect role permissions.
+12. Customer records must be accessible only to authorized users.
+13. Order status changes must follow valid transitions.
+14. Important status changes must be recorded in an audit history.
+15. Repeated requests must not create duplicate payments, orders, or stock deductions.
+16. Financial and inventory updates involving multiple database operations must use appropriate transaction handling where supported.
+17. Dashboard metrics must be derived from actual stored records.
+18. Empty databases must display useful empty states rather than fabricated business activity.
+
+Use realistic sample data only for development or an explicitly initialized demo environment.
+
+Clearly separate demo data from real business records.
+
+---
+
+# 28. ERROR HANDLING AND VALIDATION
+
+Every screen must handle:
+
+* Loading states.
+* Empty states.
+* Validation errors.
+* Network errors.
+* Authentication errors.
+* Permission errors.
+* Server errors.
+* Successful operations.
+
+Use consistent toast notifications and inline form messages.
+
+Backend responses should use a consistent structure.
+
+Validate inputs on both frontend and backend.
+
+Never expose sensitive debugging information to public users.
+
+Provide retry options when appropriate.
+
+Prevent silent failures.
+
+---
+
+# 29. ACCESSIBILITY
+
+Follow practical accessibility standards.
+
+Include:
+
+* Semantic HTML.
+* Accessible labels.
+* Keyboard navigation.
+* Visible focus states.
+* Adequate color contrast.
+* Accessible dialogs.
+* Useful image alternative text.
+* Form error descriptions.
+* Screen-reader-friendly status updates.
+* Reduced-motion support.
+
+Do not rely on color alone to communicate order or payment status.
+
+---
+
+# 30. TESTING REQUIREMENTS
+
+Test the application before declaring it complete.
+
+## Authentication
+
+* Register a customer.
+* Sign in.
+* Sign out.
+* Verify protected routes.
+* Verify role permissions.
+* Verify that users cannot access another user's private data.
+
+## Storefront
+
+* Load products from MongoDB.
+* Search products.
+* Filter categories.
+* View product details.
+* Add products to the cart.
+* Update quantities.
+* Complete a test checkout.
+
+## Custom Cakes
+
+* Submit a custom cake request.
+* Upload a reference image.
+* Review the request as an administrator.
+* Create a quotation.
+* Approve a quotation.
+* Track the request through production.
+
+## POS
+
+* Create a walk-in order.
+* Add products.
+* Record a payment.
+* Generate a receipt.
+* Verify the order appears in the database.
+
+## Inventory
+
+* Create an ingredient.
+* Record a purchase.
+* Update stock.
+* Trigger a low-stock alert.
+* Verify movement history.
+
+## Production and Delivery
+
+* Assign a production task.
+* Update its status.
+* Assign a delivery.
+* Update delivery status.
+* Verify role restrictions.
+
+## Reports
+
+* Verify dashboard metrics.
+* Check date filters.
+* Verify revenue and collected payments separately.
+* Confirm that cancellations and refunds are handled correctly.
+
+## Responsive Design
+
+Test at:
+
+* 360px.
+* 390px.
+* 768px.
+* 1024px.
+* 1440px.
+
+Verify that there is no horizontal overflow or inaccessible functionality.
+
+---
+
+# 31. DEPLOYMENT REQUIREMENTS
+
+Prepare the application for deployment.
+
+## Database
+
+Use MongoDB Atlas.
+
+Configure:
+
+* Database connection.
+* Database user.
+* Network access.
+* Environment variables.
+* Production database security.
+
+Never commit database credentials.
+
+## Backend
+
+Prepare the Express server for a production hosting environment.
+
+Configure:
+
+* Production environment variables.
+* CORS.
+* Secure authentication.
+* Error handling.
+* File storage.
+* Health-check endpoint.
+* Appropriate logging.
+
+## Frontend
+
+Build the React application for production.
+
+Configure:
+
+* Backend API base URL.
+* SPA route fallback.
+* Production environment variables.
+* Correct API integration.
+
+## Hosting
+
+Prepare the frontend and backend for deployment to compatible hosting providers.
+
+The final hosting configuration must match the selected providers and their runtime requirements.
+
+If using Google Cloud Run, ensure the server listens on the required environment-provided port.
+
+If using a separate frontend host, configure its API URL and allowed CORS origin correctly.
+
+Do not assume that local file uploads will persist on an ephemeral production filesystem. Use an appropriate persistent object-storage service for production uploads.
+
+---
+
+# 32. ENVIRONMENT VARIABLES
+
+Create appropriate example environment files without real credentials.
+
+Backend configuration may include:
+
+* PORT.
+* NODE_ENV.
+* MONGODB_URI.
+* CLIENT_URL.
+* SESSION_SECRET or the required authentication secret.
+* File-storage credentials when applicable.
+* Email-service credentials when applicable.
+
+Frontend configuration may include:
+
+* VITE_API_URL.
+
+Never expose backend secrets through frontend environment variables.
+
+Provide a clear setup guide explaining which values are required and where to obtain them.
+
+---
+
+# 33. IMPLEMENTATION PHASES
+
+Implement the project in the following order.
+
+## Phase 1: Foundation and Design System
+
+* Inspect the existing project.
+* Establish the exact design palette.
+* Implement typography and reusable components.
+* Configure routing and application layouts.
+* Build the responsive navigation and footer.
+* Establish loading, empty, error, and success states.
+
+## Phase 2: Backend and Authentication
+
+* Connect MongoDB Atlas.
+* Create database models.
+* Implement authentication.
+* Implement role-based authorization.
+* Implement validation and error handling.
+* Create the core API endpoints.
+* Add initial development data where useful.
+
+## Phase 3: Public Storefront
+
+* Homepage.
+* Product listing.
+* Product details.
+* Product search and filtering.
+* Shopping cart.
+* Custom cake request.
+* Checkout.
+* Contact and About pages.
+
+## Phase 4: Customer Portal
+
+* Customer dashboard.
+* Order history.
+* Order tracking.
+* Custom cake requests.
+* Profile and addresses.
+
+## Phase 5: Management System
+
+* Admin dashboard.
+* Orders.
+* Products and categories.
+* Customers.
+* Staff management.
+* Settings.
+* Notifications.
+
+## Phase 6: Operations
+
+* Cashier POS.
+* Baker production.
+* Inventory.
+* Suppliers and purchases.
+* Delivery management.
+* Expenses.
+
+## Phase 7: Reporting and Finalization
+
+* Sales reports.
+* Financial reports.
+* Inventory reports.
+* Audit history.
+* Security checks.
+* Responsive testing.
+* Deployment preparation.
+
+Do not attempt to implement every module in one enormous, unverified code-generation step.
+
+Complete each phase, check the code, verify integrations, and then proceed to the next phase.
+
+Preserve existing working code whenever possible.
+
+---
+
+# 34. ACCEPTANCE CRITERIA
+
+The project is complete only when all the following conditions are satisfied:
+
+### Design
+
+* The application closely follows the supplied mockup.
+* The ivory, white, burgundy, gold, and blush palette is consistent.
+* Typography, spacing, buttons, shadows, and cards are consistent.
+* The storefront looks premium and professional.
+* Every staff role has an appropriate interface.
+* All major screens are responsive.
+* Animations are subtle and functional.
+
+### Functionality
+
+* Customers can browse and purchase products.
+* Custom cake requests work from submission to completion.
+* Authentication works.
+* Role permissions are enforced on the backend.
+* Admins can manage products, orders, staff, and settings.
+* Cashiers can process sales.
+* Bakers can manage production.
+* Inventory managers can manage stock.
+* Delivery staff can update assigned deliveries.
+* Reports use actual database records.
+
+### Technical Quality
+
+* The application uses MongoDB, Express, React, and Node.js.
+* The project uses JavaScript, not TypeScript.
+* Frontend and backend are connected.
+* API errors are handled correctly.
+* Security practices are implemented.
+* Duplicate transactions are prevented where required.
+* Production configuration is documented.
+* The application can be built and deployed.
+
+### Documentation
+
+Provide:
+
+* Project structure.
+* Installation instructions.
+* Environment variable examples.
+* Database setup instructions.
+* Development commands.
+* API overview.
+* Initial owner-account setup.
+* Deployment instructions.
+
+---
+
+# 35. FINAL INSTRUCTIONS TO GOOGLE AI STUDIO
+
+Treat this document as the primary product specification and the supplied mockup as the primary visual reference.
+
+Before implementing anything, inspect the existing codebase and identify which requirements are already implemented.
+
+Do not overwrite working functionality unnecessarily.
+
+Do not generate a generic bakery template.
+
+Do not produce only a homepage or dashboard and claim the project is complete.
+
+Do not use hardcoded data as a replacement for backend integration.
+
+Do not create fake authentication, fake payments, or fake inventory operations.
+
+Do not replace MongoDB with Firebase.
+
+Do not use TypeScript.
+
+Do not remove features merely because the implementation is complex.
+
+Prioritize clean architecture, security, usability, responsiveness, consistent design, and working business workflows.
+
+If a required external integration needs credentials, implement the appropriate integration structure and clearly document the configuration required. Never pretend that an unconfigured integration is operational.
+
+Work incrementally and verify each phase before moving forward.
+
+The final result must be a complete, professional, responsive, database-connected MERN application for The Cake House, with a premium customer storefront and a secure, role-based bakery management system.
