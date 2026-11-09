@@ -389,60 +389,92 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return false;
   };
 
-  const login = async (email: string, password: string) => {
-    const res = await fetch('/api/v1/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Login failed');
-
-    setToken(data.token);
-    localStorage.setItem('th_token', data.token);
-    setCurrentUser(data.user);
-    showToast(`Welcome back, ${data.user.name}!`);
-    fetchData(data.token);
-
-    // If there was a pending checkout action, restore and trigger checkout modal
-    if (pendingPostAuthAction === 'checkout') {
-      setPendingPostAuthAction(null);
-      setCheckoutModalOpen(true);
-      return;
+  const parseJsonResponse = async (res: Response) => {
+    try {
+      const text = await res.text();
+      return text ? JSON.parse(text) : {};
+    } catch {
+      return {};
     }
+  };
 
-    // Role-based redirect
-    if (data.user.role === 'admin') setCurrentView('admin-dashboard');
-    else if (data.user.role === 'cashier') setCurrentView('pos');
-    else if (data.user.role === 'baker') setCurrentView('baker');
-    else if (data.user.role === 'inventory_manager') setCurrentView('inventory-portal');
-    else if (data.user.role === 'delivery') setCurrentView('delivery');
-    else setCurrentView('customer-portal');
+  const login = async (email: string, password: string) => {
+    try {
+      const res = await fetch('/api/v1/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await parseJsonResponse(res);
+      if (!res.ok) {
+        if (res.status === 404 || res.status === 405 || res.status === 502 || res.status === 504) {
+          throw new Error('Backend server is unreachable. Please make sure the backend is running on http://localhost:3000 (or your deployment backend is live).');
+        }
+        throw new Error(data.error || 'Invalid email or password. Please verify your credentials.');
+      }
+
+      setToken(data.token);
+      localStorage.setItem('th_token', data.token);
+      setCurrentUser(data.user);
+      showToast(`Welcome back, ${data.user.name}!`);
+      fetchData(data.token);
+
+      // If there was a pending checkout action, restore and trigger checkout modal
+      if (pendingPostAuthAction === 'checkout') {
+        setPendingPostAuthAction(null);
+        setCheckoutModalOpen(true);
+        return;
+      }
+
+      // Role-based redirect
+      if (data.user.role === 'admin') setCurrentView('admin-dashboard');
+      else if (data.user.role === 'cashier') setCurrentView('pos');
+      else if (data.user.role === 'baker') setCurrentView('baker');
+      else if (data.user.role === 'inventory_manager') setCurrentView('inventory-portal');
+      else if (data.user.role === 'delivery') setCurrentView('delivery');
+      else setCurrentView('customer-portal');
+    } catch (err: any) {
+      if (err.message && err.message.includes('JSON')) {
+        throw new Error('Backend server is unreachable. Please make sure the backend is running on http://localhost:3000 (or your deployment backend is live).');
+      }
+      throw err;
+    }
   };
 
   const register = async (userData: { name: string; email: string; phone: string; password: string; address: string }) => {
-    const res = await fetch('/api/v1/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData)
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Registration failed');
+    try {
+      const res = await fetch('/api/v1/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+      });
+      const data = await parseJsonResponse(res);
+      if (!res.ok) {
+        if (res.status === 404 || res.status === 405 || res.status === 502 || res.status === 504) {
+          throw new Error('Backend server is unreachable. Please make sure the backend is running on http://localhost:3000 (or your deployment backend is live).');
+        }
+        throw new Error(data.error || 'Registration failed');
+      }
 
-    setToken(data.token);
-    localStorage.setItem('th_token', data.token);
-    setCurrentUser(data.user);
-    showToast('Customer account registered successfully!');
-    fetchData(data.token);
+      setToken(data.token);
+      localStorage.setItem('th_token', data.token);
+      setCurrentUser(data.user);
+      showToast('Customer account registered successfully!');
+      fetchData(data.token);
 
-    // If there was a pending checkout action, restore and trigger checkout modal
-    if (pendingPostAuthAction === 'checkout') {
-      setPendingPostAuthAction(null);
-      setCheckoutModalOpen(true);
-      return;
+      if (pendingPostAuthAction === 'checkout') {
+        setPendingPostAuthAction(null);
+        setCheckoutModalOpen(true);
+        return;
+      }
+
+      setCurrentView('customer-portal');
+    } catch (err: any) {
+      if (err.message && err.message.includes('JSON')) {
+        throw new Error('Backend server is unreachable. Please make sure the backend is running on http://localhost:3000 (or your deployment backend is live).');
+      }
+      throw err;
     }
-
-    setCurrentView('customer-portal');
   };
 
   const logout = () => {
